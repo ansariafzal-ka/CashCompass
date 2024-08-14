@@ -13,7 +13,7 @@ const Hero = () => {
             From your everyday spending, to planning for your future with
             savings and investments, we help you get more from your money
           </p>
-          <div className="flex flex-col justify-center items-start gap-6 md:flex-row md:items-center lg:flex-col lg:items-start">
+          <div className="flex flex-col justify-center items-start gap-6 md:flex-row md:items-center">
             <button className="btn">Get Started Now</button>
             <div className="border p-5 rounded-lg">
               <div className="mb-2 flex justify-start items-center gap-2">

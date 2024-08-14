@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Features = () => {
   return (
-    <section className="px-6 pt-10">
-      <h1 className="text-4xl font-medium mb-12 lg:text-center">
+    <section className="px-6 lg:mt-10">
+      <h1 className="text-4xl font-medium mb-6 lg:text-center lg:mb-12">
         Make your spendings, <span className="text-green-700">Well-spend</span>
       </h1>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
