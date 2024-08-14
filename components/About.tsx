@@ -7,7 +7,7 @@ import {
 
 const About = () => {
   return (
-    <section className="px-6 mt-6 lg:mt-12">
+    <section id="about" className="px-6 mt-6 lg:mt-12">
       <h1 className="text-3xl sm:text-4xl font-medium mb-8 lg:text-center lg:mb-12">
         One platform for all your{" "}
         <span className="text-green-700">money things</span>{" "}

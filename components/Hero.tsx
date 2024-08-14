@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="p-6">
+    <section id="home" className="p-6">
       <div className="lg:grid lg:grid-cols-2 lg:gap-8">
         <div className="mb-8 lg:mb-0 flex flex-col justify-center items-start gap-6 sm:items-center lg:items-start">
           <h1 className="text-5xl font-medium md:text-7xl sm:text-center md:max-w-[800px] lg:text-left">
