@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -14,7 +15,9 @@ const Hero = () => {
             savings and investments, we help you get more from your money
           </p>
           <div className="flex flex-col justify-center items-start sm:items-center gap-6 md:flex-row md:items-center">
-            <button className="btn">Get Started Now</button>
+            <Link href="/dashboard" className="btn">
+              Get Started Now
+            </Link>
             <div className="border p-5 rounded-lg">
               <div className="mb-2 flex justify-start items-center gap-2">
                 <Star className="text-yellow-500" />
