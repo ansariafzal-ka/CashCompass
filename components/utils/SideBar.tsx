@@ -3,7 +3,7 @@ import { LayoutDashboard, Wallet, HandCoins } from "lucide-react";
 
 const SideBar = () => {
   return (
-    <div className="max-w-[300px] min-w-[300px] h-full px-5 py-10 bg-white border-r">
+    <div className="max-w-[250px] min-w-[250px] h-full px-5 py-10 bg-white border-r hidden lg:block">
       <div className="w-full flex flex-col gap-8">
         <SideNavLink
           title="Dashboard"

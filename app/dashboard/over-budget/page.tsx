@@ -1,8 +1,6 @@
-import React from "react";
-
 const page = () => {
   return (
-    <section className="w-full h-[calc(100vh-61px)] bg-gray-100">
+    <section>
       <h1>Over Budget</h1>
     </section>
   );
