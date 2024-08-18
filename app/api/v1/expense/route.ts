@@ -21,7 +21,7 @@ export const GET = async (request: NextRequest) => {
 export const POST = async (request: NextRequest) => {
   try {
     const { itemName, amount, category, priority } = await request.json();
-    if (!itemName || !amount || !category || !priority)
+    if (!itemName || !amount)
       return new NextResponse("Some fields are missing", { status: 400 });
 
     const newExpense = await Expense.create({

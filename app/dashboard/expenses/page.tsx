@@ -1,6 +1,4 @@
 "use client";
-
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -9,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import ExpenseModal from "@/components/utils/ExpenseModal";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -28,8 +27,6 @@ const page = () => {
     const fetchAllData = async () => {
       try {
         const response = await axios.get("/api/v1/expense");
-        console.log(response.data.expenses);
-
         setExpenses(response.data.expenses);
       } catch (error) {
         console.log(error);
@@ -42,7 +39,7 @@ const page = () => {
     <section className="w-full">
       <div className="mb-3 flex justify-between items-center">
         <h1 className="text-lg font-medium">Expenses</h1>
-        <Button>Add</Button>
+        <ExpenseModal />
       </div>
       <Table className="border w-full bg-white">
         <TableHeader>
@@ -59,7 +56,7 @@ const page = () => {
             expenses.map((expense) => (
               <TableRow key={expense.id}>
                 <TableCell>{expense.itemName}</TableCell>
-                <TableCell>{expense.amount}</TableCell>
+                <TableCell>₹{expense.amount}</TableCell>
                 <TableCell>{expense.category}</TableCell>
                 <TableCell>{expense.priority}</TableCell>
                 <TableCell>
@@ -69,7 +66,7 @@ const page = () => {
             ))
           ) : (
             <TableRow>
-              <TableCell>No Expenses Found</TableCell>
+              <TableCell className="font-medium">No Expenses Found</TableCell>
             </TableRow>
           )}
         </TableBody>
