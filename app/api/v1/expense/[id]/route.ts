@@ -52,7 +52,7 @@ export const PUT = async (
     return new NextResponse(
       JSON.stringify({
         message: "Expense updated succesfully",
-        newExpense: updatedExpense,
+        updatedExpense: updatedExpense,
       })
     );
   } catch (error) {

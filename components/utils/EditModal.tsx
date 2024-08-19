@@ -24,33 +24,40 @@ import axios from "axios";
 import { Pen } from "lucide-react";
 
 interface ModalProps {
-  onCreate: (newExpense: any) => void;
+  _id: string;
+  prevItemName: string;
+  prevAmount: string;
+  prevCategory: string;
+  prevPriority: string;
+  onEdit: (editedExpense: any) => void;
 }
 
-const EditModal = ({ onCreate }: ModalProps) => {
-  const [itemName, setItemName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("personal");
-  const [priority, setPriority] = useState("mid");
+const EditModal = ({
+  _id,
+  prevItemName,
+  prevAmount,
+  prevCategory,
+  prevPriority,
+  onEdit,
+}: ModalProps) => {
+  const [itemName, setItemName] = useState(prevItemName);
+  const [amount, setAmount] = useState(prevAmount);
+  const [category, setCategory] = useState(prevCategory);
+  const [priority, setPriority] = useState(prevPriority);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleEdit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const numericAmount = parseFloat(amount);
-
-      const response = await axios.post("/api/v1/expense", {
+      const response = await axios.put(`/api/v1/expense/${_id}`, {
         itemName: itemName,
-        amount: numericAmount,
+        amount: amount,
         category: category,
         priority: priority,
       });
-      onCreate(response.data.newExpense);
-      setItemName("");
-      setAmount("");
-      setCategory("personal");
-      setPriority("mid");
+      console.log("Edited Expense Response : ", response.data.updatedExpense);
+      onEdit(response.data.updatedExpense);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -70,7 +77,7 @@ const EditModal = ({ onCreate }: ModalProps) => {
             </DialogDescription>
           </DialogHeader>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleEdit}
             className="flex flex-col items-start justify-center gap-3"
           >
             <Label>Item Name</Label>
@@ -88,7 +95,7 @@ const EditModal = ({ onCreate }: ModalProps) => {
               onChange={(e) => setAmount(e.target.value)}
             />
             <Label>Category</Label>
-            <Select onValueChange={setCategory}>
+            <Select onValueChange={setCategory} defaultValue={prevCategory}>
               <SelectTrigger>
                 <SelectValue placeholder="personal" />
               </SelectTrigger>
@@ -100,7 +107,7 @@ const EditModal = ({ onCreate }: ModalProps) => {
               </SelectContent>
             </Select>
             <Label>Priority</Label>
-            <Select onValueChange={setPriority}>
+            <Select onValueChange={setPriority} defaultValue={prevPriority}>
               <SelectTrigger>
                 <SelectValue placeholder="mid" />
               </SelectTrigger>
