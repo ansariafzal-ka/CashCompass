@@ -6,13 +6,13 @@ const FinanceSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
-  savings: {
+  budget: {
     type: Number,
     required: true,
     min: 0,
     default: 0,
   },
-  budget: {
+  savings: {
     type: Number,
     required: true,
     min: 0,

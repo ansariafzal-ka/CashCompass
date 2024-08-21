@@ -18,21 +18,31 @@ export const POST = async (request: NextRequest) => {
     await connectDb();
     const { income, budget } = await request.json();
 
-    if (!income || !budget)
-      return new NextResponse("Some fields are missing", { status: 400 });
-
     const calculatedSavings = income - budget;
 
-    const newFinance = await Finance.create({
-      income: income,
-      savings: calculatedSavings,
-      budget: budget,
-    });
+    if (calculatedSavings < 0)
+      return new NextResponse("Savings can't be negative", { status: 400 });
+
+    let finance = await Finance.findOne();
+
+    if (finance) {
+      finance.income = income;
+      finance.budget = budget;
+      finance.savings = calculatedSavings;
+      await finance.save();
+    } else {
+      finance = new Finance({
+        income: income || 0,
+        budget: budget || 0,
+        savings: calculatedSavings || 0,
+      });
+      await finance.save();
+    }
 
     return new NextResponse(
       JSON.stringify({
         message: "Finance created successfully",
-        newFinance: newFinance,
+        newFinance: finance,
       }),
       { status: 200 }
     );
